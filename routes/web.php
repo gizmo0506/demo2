@@ -31,3 +31,4 @@ Route::get('/convert-to-json', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/ajaxlists', [EmployeeController::class, 'getList']);

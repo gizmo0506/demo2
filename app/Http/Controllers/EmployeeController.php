@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use Redirect;
+use Response;
 
 class EmployeeController extends Controller
 {
@@ -16,12 +18,25 @@ class EmployeeController extends Controller
     {
         $this->middleware('auth');
     }
-      
+
     public function index()
     {
         $employee = Employee::paginate(15);
         return view('index', compact('employee'));
     }
+
+    public function getList(Request $request)
+    {
+        $results = Employee::orderBy('id')->paginate(15);
+        $ajaxlists = '';
+        if ($request->ajax()) {
+            foreach ($results as $result) {
+                $ajaxlists.='<table class="table"><tr><td>'.$result->id.'</td><td>'.$result->name.'</td><td>'.$result->email.'</td><td>'.$result->phone.'</td><td>'.$result->dob.'</td></tr></table>';
+            }
+            return $ajaxlists;
+        }
+        return view('ajaxlist');
+    }    
 
     /**
      * Show the form for creating a new resource.

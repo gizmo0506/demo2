@@ -60,6 +60,12 @@
                         <li class="nav-item">
                                     <a class="nav-link" href="/employees/create">Add</a>
                                 </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ajaxlists">AJAX Table</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/todo">AJAX CRUD</a>
+                        </li>
                         @endguest
 
                     </ul>

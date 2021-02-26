@@ -19,10 +19,22 @@ class EmployeeController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $employee = Employee::paginate(15);
-        return view('index', compact('employee'));
+        $employee = Employee::where([
+            ['name', '!=', Null],
+            [function($query) use ($request){
+                if(($term = $request->term)){
+                    $query->orWhere('name', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(15);
+
+        //$employee = Employee::paginate(15);
+        return view('index', compact('employee'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function getList(Request $request)

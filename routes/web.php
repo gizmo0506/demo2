@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SimpleSearchController;
 use App\Http\Controllers\CrudController;
 Use App\Http\Controllers\ItemSearchController;
+use App\Http\Controllers\JwtController;
 
 
 /*
@@ -44,3 +45,6 @@ Route::get('/ajax-autocomplete-search', [SimpleSearchController::class, 'selectS
 Route::get('items-lists', [ItemSearchController::class, 'index'])->name('items-lists');
 Route::post('create-item', [ItemSearchController::class, 'create'])->name('create-item');
 Route::post('autocomplete', [ItemSearchController::class, 'autocomplete'])->name('autocomplete');
+
+Route::get('/jwt/encrypt', [JwtController::class, 'encrypt']);
+Route::get('/jwt/decrypt', [JwtController::class, 'decrypt']);

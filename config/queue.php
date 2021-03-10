@@ -34,6 +34,13 @@ return [
             'driver' => 'sync',
         ],
 
+        'iron' => [
+            'driver'  => 'iron',
+            'project' => 'your-project-id',
+            'token'   => 'lBsm8RHZIejCqZA6W5y2',
+            'queue'   => 'your-queue-name',
+        ],
+
         'database' => [
             'driver' => 'database',
             'table' => 'jobs',
